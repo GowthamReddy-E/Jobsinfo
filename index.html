@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenkins Build Info</title>
+    <style>
+        body {
+            background-color: lightblue;
+            padding: 20px;
+        }
+
+        .table-container {
+            background-color: white;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .pass-circle {
+            background-color: green;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .fail-circle {
+            background-color: red;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jenkins Build Info</h1>
+    <div class="table-container">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Job Name</th>
+                    <th>Current Build Number</th>
+                    <th>Last Success Build Number</th>
+                    <th>Last Failure Build Number</th>
+                    <th>Build Triggering Time</th>
+                    <th>Build Duration</th>
+                    <th>Current Build Status</th>
+                    <th>Commit Message</th>
+                    <th>Commit Username</th>
+                    <th>Errors in Current Build</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Row 1 -->
+                <tr>
+                    <td>{s_no_1}</td>
+                    <td>{job_name_1}</td>
+                    <td>{current_build_number_1}</td>
+                    <td>{last_success_build_number_1}</td>
+                    <td>{last_failure_build_number_1}</td>
+                    <td>{build_triggering_time_1}</td>
+                    <td>{build_duration_1}</td>
+                    <td>
+                        {% if build_status_1 == 'F' %}
+                            <span class="fail-circle">F</span>
+                        {% else %}
+                            <span class="pass-circle">P</span>
+                        {% endif %}
+                    </td>
+                    <td>{commit_message_1}</td>
+                    <td>{commit_username_1}</td>
+                    <td>
+                        <div style="border: 1px solid #ccc; padding: 10px;">
+                            <!-- Add log details here -->
+                            {errors_in_current_build_1}
+                        </div>
+                    </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr>
+                    <td>{s_no_2}</td>
+                    <td>{job_name_2}</td>
+                    <td>{current_build_number_2}</td>
+                    <td>{last_success_build_number_2}</td>
+                    <td>{last_failure_build_number_2}</td>
+                    <td>{build_triggering_time_2}</td>
+                    <td>{build_duration_2}</td>
+                    <td>
+                        {% if build_status_2 == 'F' %}
+                            <span class="fail-circle">F</span>
+                        {% else %}
+                            <span class="pass-circle">P</span>
+                        {% endif %}
+                    </td>
+                    <td>{commit_message_2}</td>
+                    <td>{commit_username_2}</td>
+                    <td>
+                        <div style="border: 1px solid #ccc; padding: 10px;">
+                            <!-- Add log details here -->
+                            {errors_in_current_build_2}
+                        </div>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
