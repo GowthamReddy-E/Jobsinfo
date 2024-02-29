@@ -1,0 +1,124 @@
+Started by user ERAGAMREDDY GOWTHAM REDDY
+Rebuilds build #29
+Obtained jenkinsfile from git https://github.com/GowthamReddy-E/nginx.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /Users/gowe/.jenkins/workspace/host_info_inside_container_JOB
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /Users/gowe/.jenkins/workspace/host_info_inside_container_JOB/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/GowthamReddy-E/nginx.git # timeout=10
+Fetching upstream changes from https://github.com/GowthamReddy-E/nginx.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.3 (Apple Git-145)'
+ > git fetch --tags --force --progress -- https://github.com/GowthamReddy-E/nginx.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 6c75e05c1e7e6c24f722402ee241803de4a05702 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 6c75e05c1e7e6c24f722402ee241803de4a05702 # timeout=10
+Commit message: "Update jenkinsfile"
+ > git rev-list --no-walk 5245f8c9f5e1bed346acf9a9bc6669b8403da2f1 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Remove Existing Containers)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] echo
+Containers removed successfully
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build and Test)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ /Applications/Docker.app/Contents/Resources/bin/docker --version
+Docker version 24.0.7, build afdd53b
+[Pipeline] sh
++ /Applications/Docker.app/Contents/Resources/bin/docker build . -t host-info-img:latest
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load .dockerignore
+#1 transferring context: 2B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 740B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/nginx:latest
+#3 DONE 0.0s
+
+#4 [1/9] FROM docker.io/library/nginx:latest
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 99B done
+#5 DONE 0.0s
+
+#6 [4/9] COPY crontab.txt /etc/cron.d/crontab.txt
+#6 CACHED
+
+#7 [7/9] RUN crontab /etc/cron.d/crontab.txt && touch /var/log/cron.log
+#7 CACHED
+
+#8 [3/9] COPY system_info.sh /usr/share/nginx/html/system_info.sh
+#8 CACHED
+
+#9 [5/9] RUN chmod +x /usr/share/nginx/html/system_info.sh
+#9 CACHED
+
+#10 [6/9] RUN  chmod 0644 /etc/cron.d/crontab.txt
+#10 CACHED
+
+#11 [2/9] RUN apt-get update && apt-get install -y cron
+#11 CACHED
+
+#12 [8/9] COPY entrypoint.sh /entrypoint.sh
+#12 CACHED
+
+#13 [9/9] RUN chmod +x /entrypoint.sh
+#13 CACHED
+
+#14 exporting to image
+#14 exporting layers done
+#14 writing image sha256:d583c9ba55d5162ee9a32052989012b533f0e9c59df035c47c6c3235a6d147b1 done
+#14 naming to docker.io/library/host-info-img:latest done
+#14 DONE 0.0s
+
+What's Next?
+  1. Sign in to your Docker account → docker login
+  2. View a summary of image vulnerabilities and recommendations → docker scout quickview
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
++ /Applications/Docker.app/Contents/Resources/bin/docker run -itd -p 8041:80 -v /etc/localtime:/etc/localtime:ro --name c3 host-info-img:latest
+bebde717dffdd27aec9fd5faa5f143d60e3fc475093157d26ce86fddf0820871
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+/Users/gowe/.jenkins/workspace/host_info_inside_container_JOB@tmp/jfrog/30/.jfrog deleted
+Finished: SUCCESS

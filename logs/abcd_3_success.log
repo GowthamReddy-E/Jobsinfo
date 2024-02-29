@@ -1,0 +1,7 @@
+Started by user ERAGAMREDDY GOWTHAM REDDY
+Running as SYSTEM
+Building in workspace /Users/gowe/.jenkins/workspace/abcd
+[abcd] $ /bin/sh -xe /var/folders/rw/36rw4yvx2s35srrvl9_xq2q80000gp/T/jenkins9929684870379700814.sh
++ echo 'hi good night'
+hi good night
+Finished: SUCCESS
