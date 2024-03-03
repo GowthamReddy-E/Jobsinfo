@@ -3,7 +3,7 @@ FROM nginx
 
 # Install Python and cron
 RUN apt-get update && \
-    apt-get install -y python3 python3-pip cron && \
+    apt-get install -y python3 python3-pip python3-full cron && \
     rm -rf /var/lib/apt/lists/*
 
 COPY index.html /usr/share/nginx/html/
