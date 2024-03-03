@@ -10,7 +10,7 @@ COPY index.html /usr/share/nginx/html/
 # Copy the Python script into the container
 COPY . .
 
-RUN pip3 install  -r requirements.txt
+RUN pip3 install  requirements.txt
 
 # Copy the cron job file into the container
 COPY cronjob /etc/cron.d/cronjob
