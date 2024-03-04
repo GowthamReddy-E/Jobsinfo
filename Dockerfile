@@ -10,8 +10,8 @@ COPY index.html /usr/share/nginx/html/
 # Copy the Python script into the container
 COPY . .
 
-# Install required Python modules
-RUN pip3 install python-jenkins requests Jinja2
+# Install required Python modules using pip
+RUN pip install python-jenkins requests Jinja2
 
 # Copy the cron job file into the container
 COPY cronjob /etc/cron.d/cronjob
