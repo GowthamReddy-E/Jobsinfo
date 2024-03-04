@@ -77,14 +77,15 @@ def write_log_to_file(log_content, log_filepath):
     with open(log_filepath, 'w') as log_file:
         log_file.write(log_content)
 
-server_url = 'http://localhost:9090/'
+server_url = 'http://192.168.1.3:9090/'
 username = 'admin'
 api_token = '11c433081e76b2b952d517d3aa146687b7'
 
 server = connect_to_jenkins(server_url, username, api_token)
 jobs = get_jenkins_jobs(server)
 job_info, current_build_numbers = get_jenkins_job_info(server, jobs)
-logs_directory = 'F:/gowthamCodingProjects/GitHub/myRepositaryProjects/Jobsinfo/logs'
+# logs_directory = 'F:/gowthamCodingProjects/GitHub/myRepositaryProjects/Jobsinfo/logs'
+logs_directory = '/logs'
 
 job_statuses = {}
 for job_name, info in job_info.items():
@@ -92,7 +93,10 @@ for job_name, info in job_info.items():
 
 print(job_statuses)
 
-json_filepath = 'F:/gowthamCodingProjects/GitHub/myRepositaryProjects/Jobsinfo/data.json'
+# json_filepath = 'F:/gowthamCodingProjects/GitHub/myRepositaryProjects/Jobsinfo/data.json'
+json_filepath = '/data.json'
+
+
 with open(json_filepath, 'w') as json_file:
     json.dump(job_info, json_file, indent=4)
 
@@ -140,7 +144,7 @@ def get_existing_files(logs_directory):
 
 existing_names = get_existing_files(logs_directory)
 
-json_filepath = 'F:/gowthamCodingProjects/GitHub/myRepositaryProjects/Jobsinfo/data.json'
+# json_filepath = 'F:/gowthamCodingProjects/GitHub/myRepositaryProjects/Jobsinfo/data.json'
 with open(json_filepath, 'r') as json_file:
     data = json.load(json_file)
 
@@ -171,22 +175,34 @@ def process_existing_files(Current_names, existing_names, Current_data, existing
                         log_content = job_logs[selected_job_name]
                         log_filename = f"{Current_names[i]}_{Current_data[Current_names[i]]}_{job_statuses[Current_names[i]]}.log"
                         log_filepath = os.path.join(logs_directory, log_filename)
-                        write_log_to_file(log_content, log_filepath)               
-                        print(f"Log file created for job: {selected_job_name}")
+                        try:
+                            write_log_to_file(log_content, log_filepath)
+                            print("Log file created for job:", Current_names[i])
+                        except UnicodeEncodeError as e:
+                            print(f"UnicodeEncodeError: {e}")
+                            print("The Log file Can not be created it's not readable format job:", Current_names[i])
                     else:
                         selected_job_name = Current_names[i]
                         log_content = job_logs[selected_job_name]
                         log_filename = f"{Current_names[i]}_{Current_data[Current_names[i]]}_{job_statuses[Current_names[i]]}.log"
                         log_filepath = os.path.join(logs_directory, log_filename)
-                        write_log_to_file(log_content, log_filepath)               
-                        print(f"Log file created for job: {selected_job_name}")    
+                        try:
+                            write_log_to_file(log_content, log_filepath)
+                            print("Log file created for job:", Current_names[i])
+                        except UnicodeEncodeError as e:
+                            print(f"UnicodeEncodeError: {e}")
+                            print("The Log file Can not be created it's not readable format job:", Current_names[i])    
                 elif Current_names[i].lower() in existing_names[j].lower() and 'failure'  in existing_names[j].lower():
                     selected_job_name = Current_names[i]
                     log_content = job_logs[selected_job_name]
                     log_filename = f"{Current_names[i]}_{Current_data[Current_names[i]]}_{job_statuses[Current_names[i]]}.log"
                     log_filepath = os.path.join(logs_directory, log_filename)
-                    write_log_to_file(log_content, log_filepath)               
-                    print(f"Log file created for job: {selected_job_name}")
+                    try:
+                        write_log_to_file(log_content, log_filepath)
+                        print("Log file created for job:", Current_names[i])
+                    except UnicodeEncodeError as e:
+                        print(f"UnicodeEncodeError: {e}")
+                        print("The Log file Can not be created it's not readable format job:", Current_names[i])
                        
     else:
          for i in range(len(Current_names)):
@@ -194,8 +210,12 @@ def process_existing_files(Current_names, existing_names, Current_data, existing
             log_content = job_logs[selected_job_name]
             log_filename = f"{Current_names[i]}_{Current_data[Current_names[i]]}_{job_statuses[Current_names[i]]}.log"
             log_filepath = os.path.join(logs_directory, log_filename)
-            write_log_to_file(log_content, log_filepath)
-            print("Log file created for job:", Current_names[i])     
+            try:
+                write_log_to_file(log_content, log_filepath)
+                print("Log file created for job:", Current_names[i])
+            except UnicodeEncodeError as e:
+                print(f"UnicodeEncodeError: {e}")
+                print("The Log file Can not be created it's not readable format job:", Current_names[i])     
 
 process_existing_files(Current_names, existing_names, Current_data, existing_data, logs_directory)
 

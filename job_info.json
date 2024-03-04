@@ -44,13 +44,22 @@
         "build_duration": "0 hr 0 min 12 sec 348 ms",
         "current_build_status": "SUCCESS"
     },
-    "jb": {
-        "current_build_name": "jb",
-        "current_build_number": "1",
-        "last_successful_build_number": 1,
-        "last_failed_build_number": null,
-        "build_triggering_time": "2024-03-04 23:18:52",
-        "build_duration": "0 hr 0 min 19 sec 812 ms",
+    "jenkinsjobdetails": {
+        "current_build_name": "jenkinsjobdetails",
+        "current_build_number": "22",
+        "last_successful_build_number": 22,
+        "last_failed_build_number": 21,
+        "build_triggering_time": "2024-03-04 22:48:44",
+        "build_duration": "0 hr 0 min 18 sec 841 ms",
         "current_build_status": "SUCCESS"
+    },
+    "one": {
+        "current_build_name": "one",
+        "current_build_number": "41",
+        "last_successful_build_number": 40,
+        "last_failed_build_number": 41,
+        "build_triggering_time": "2024-03-03 22:33:57",
+        "build_duration": "0 hr 0 min 0 sec 189 ms",
+        "current_build_status": "FAILURE"
     }
 }
