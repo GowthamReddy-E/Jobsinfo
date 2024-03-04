@@ -46,11 +46,11 @@
     },
     "jb": {
         "current_build_name": "jb",
-        "current_build_number": "1",
-        "last_successful_build_number": 1,
+        "current_build_number": "2",
+        "last_successful_build_number": 2,
         "last_failed_build_number": null,
-        "build_triggering_time": "2024-03-04 23:18:52",
-        "build_duration": "0 hr 0 min 19 sec 812 ms",
+        "build_triggering_time": "2024-03-04 23:39:15",
+        "build_duration": "0 hr 0 min 23 sec 129 ms",
         "current_build_status": "SUCCESS"
     }
 }

@@ -224,3 +224,38 @@ print(existing_names)
 print(Current_data)
 print(job_statuses)
 
+
+def read_json_file(json_filepath):
+    with open(json_filepath, 'r') as file:
+        data = json.load(file)
+    return data
+
+# Function to process JSON data and create dictionaries for each job
+def process_json_data(data):
+    all_job_details = []
+    for job_name, job_details in data.items():
+        job_dict = {}
+        job_dict[job_name] = {
+            'current_build_number': job_details['current_build_number'],
+            'last_successful_build_number': job_details['last_successful_build_number'],
+            'last_failed_build_number': job_details['last_failed_build_number'],
+            'build_triggering_time': job_details['build_triggering_time'],
+            'build_duration': job_details['build_duration'],
+            'current_build_status': job_details['current_build_status']
+        }
+        all_job_details.append(job_dict)
+    return all_job_details
+
+# File path to the JSON file
+file_path = 'your_file_path.json'
+
+# Read JSON data from file
+json_data = read_json_file(json_filepath)
+
+# Process JSON data and create dictionaries for each job
+all_job_details = process_json_data(json_data)
+
+# Print the list containing all job dictionaries
+# print(all_job_details)
+
+print(all_job_details[0].keys()[0])

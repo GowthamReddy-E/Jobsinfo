@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Displaying JSON Data</title>
+    <title>Display Data</title>
     <style>
       table {
         border-collapse: collapse;
@@ -42,13 +42,10 @@
 
     <script>
       // Load JSON data from file
-      fetch('F:/gowthamCodingProjects/GitHub/myRepositaryProjects/Jobsinfo/data.json')
+      fetch('/data.json')
         .then(response => response.json())
         .then(jsonData => {
           // Create table rows for each job.
-
-
-          
           const tableBody = document.querySelector('#json-table tbody');
           for (const jobName in jsonData) {
             const jobData = jsonData[jobName];
