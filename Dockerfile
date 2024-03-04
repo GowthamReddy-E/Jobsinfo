@@ -14,7 +14,7 @@ COPY index.html /usr/share/nginx/html/
 COPY . .
 
 # Create and activate a virtual environment
-RUN python3 -m venv /venv
+RUN python3.5 -m venv /venv
 ENV PATH="/venv/bin:$PATH"
 
 # Install required Python modules using pip
