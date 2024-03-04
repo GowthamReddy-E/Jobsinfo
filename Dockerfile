@@ -13,8 +13,8 @@ COPY index.html /usr/share/nginx/html/
 COPY . .
 
 # Create and activate a virtual environment
-RUN python3 -m venv /venv
-ENV PATH="/venv/bin:$PATH"
+# RUN python3 -m venv /venv
+# ENV PATH="/venv/bin:$PATH"
 
 # Install required Python packages using pip within the virtual environment
 RUN pip install --break-system-packages python-jenkins requests Jinja2
