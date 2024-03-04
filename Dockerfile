@@ -1,18 +1,17 @@
 # Use NGINX as the base image
 FROM nginx
 
-# Install Python 3.5 and create virtual environment
-RUN apt-get update 
+# Install Python and cron
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip cron && \
+    rm -rf /var/lib/apt/lists/*
 
-# Set the PATH environment variable to include the virtual environment
-# ENV PATH="/venv/bin:$PATH"
-
-# Copy your files and directories
 COPY index.html /usr/share/nginx/html/
+# Copy the Python script into the container
 COPY . .
 
-# Install required Python modules using pip
-RUN pip install -r requirements.txt
+# Install Python dependencies
+# RUN pip3 install -r requirements.txt
 
 # Copy the cron job file into the container
 COPY cronjob /etc/cron.d/cronjob
