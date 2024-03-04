@@ -46,12 +46,12 @@
     },
     "jenkinsjobdetails": {
         "current_build_name": "jenkinsjobdetails",
-        "current_build_number": "10",
-        "last_successful_build_number": null,
-        "last_failed_build_number": 10,
-        "build_triggering_time": "2024-03-04 21:39:42",
-        "build_duration": "0 hr 0 min 9 sec 824 ms",
-        "current_build_status": "FAILURE"
+        "current_build_number": "20",
+        "last_successful_build_number": 20,
+        "last_failed_build_number": 19,
+        "build_triggering_time": "2024-03-04 22:11:47",
+        "build_duration": "0 hr 0 min 24 sec 811 ms",
+        "current_build_status": "SUCCESS"
     },
     "one": {
         "current_build_name": "one",

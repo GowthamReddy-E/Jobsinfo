@@ -1,0 +1,113 @@
+Started by user admin
+Obtained Jenkinsfile from git https://github.com/GowthamReddy-E/Jobsinfo.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in C:\ProgramData\Jenkins\.jenkins\workspace\jenkinsjobdetails
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > C:\Program Files\Git\bin\git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\jenkinsjobdetails\.git # timeout=10
+Fetching changes from the remote Git repository
+ > C:\Program Files\Git\bin\git.exe config remote.origin.url https://github.com/GowthamReddy-E/Jobsinfo.git # timeout=10
+Fetching upstream changes from https://github.com/GowthamReddy-E/Jobsinfo.git
+ > C:\Program Files\Git\bin\git.exe --version # timeout=10
+ > git --version # 'git version 2.37.3.windows.1'
+ > C:\Program Files\Git\bin\git.exe fetch --tags --force --progress -- https://github.com/GowthamReddy-E/Jobsinfo.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > C:\Program Files\Git\bin\git.exe rev-parse "refs/remotes/origin/gowtham^{commit}" # timeout=10
+Checking out Revision 9105151f044b3c5a1fe97347e01baeb0b1ffb6db (refs/remotes/origin/gowtham)
+ > C:\Program Files\Git\bin\git.exe config core.sparsecheckout # timeout=10
+ > C:\Program Files\Git\bin\git.exe checkout -f 9105151f044b3c5a1fe97347e01baeb0b1ffb6db # timeout=10
+Commit message: "new"
+ > C:\Program Files\Git\bin\git.exe rev-list --no-walk 230aebc9a906af6fbb7f1649fe2f132398463b23 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\jenkinsjobdetails>docker build -t "my_nginx_image" -f Dockerfile . 
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 761B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/nginx:latest
+#2 DONE 2.4s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/8] FROM docker.io/library/nginx:latest@sha256:c26ae7472d624ba1fafd296e73cecc4f93f853088e6a9c13c0d52f6ca5865107
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 20.47kB 0.1s done
+#5 DONE 0.1s
+
+#6 [2/8] RUN apt-get update &&     apt-get install -y python3 python3-pip cron &&     rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/8] COPY index.html /usr/share/nginx/html/
+#7 CACHED
+
+#8 [4/8] COPY . .
+#8 DONE 0.1s
+
+#9 [5/8] COPY cronjob /etc/cron.d/cronjob
+#9 DONE 0.0s
+
+#10 [6/8] RUN chmod 0644 /etc/cron.d/cronjob
+#10 DONE 0.3s
+
+#11 [7/8] RUN crontab /etc/cron.d/cronjob
+#11 DONE 0.5s
+
+#12 [8/8] RUN touch /var/log/cron.log
+#12 DONE 0.5s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 8.8s done
+#13 writing image sha256:5194902cb96584807c519775a58b30fb523aa42a6d8132833078ef360b96a5ca done
+#13 naming to docker.io/library/my_nginx_image done
+#13 DONE 8.8s
+
+What's Next?
+  1. Sign in to your Docker account → docker login
+  2. View a summary of image vulnerabilities and recommendations → docker scout quickview
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Run Docker Container)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] bat
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+C:\ProgramData\Jenkins\.jenkins\workspace\jenkinsjobdetails@tmp\jfrog\20\.jfrog deleted
+Finished: SUCCESS
