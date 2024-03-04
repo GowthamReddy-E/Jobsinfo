@@ -6,12 +6,18 @@ RUN apt-get update && \
     apt-get install -y python3 python3-pip cron && \
     rm -rf /var/lib/apt/lists/*
 
+# Copy the HTML file into the NGINX HTML directory
 COPY index.html /usr/share/nginx/html/
+
 # Copy the Python script into the container
 COPY . .
 
-# Install Python dependencies
-# RUN pip3 install -r requirements.txt
+# Create and activate a virtual environment
+RUN python3 -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+
+# Install required Python packages using pip within the virtual environment
+RUN pip install python-jenkins requests Jinja2
 
 # Copy the cron job file into the container
 COPY cronjob /etc/cron.d/cronjob
