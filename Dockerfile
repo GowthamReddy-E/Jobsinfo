@@ -13,8 +13,12 @@ COPY index.html /usr/share/nginx/html/
 # Copy the Python script into the container
 COPY . .
 
+# Create and activate a virtual environment
+RUN python3 -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+
 # Install required Python modules using pip
-RUN pip install -vvv python-jenkins requests Jinja2
+RUN pip install python-jenkins requests Jinja2
 
 # Copy the cron job file into the container
 COPY cronjob /etc/cron.d/cronjob
