@@ -2,12 +2,10 @@
 FROM nginx
 
 # Install Python 3.5 and create virtual environment
-RUN apt-get update && \
-    apt-get install -y python3.5 python3-venv && \
-    python3.5 -m venv /venv
+RUN apt-get update 
 
 # Set the PATH environment variable to include the virtual environment
-ENV PATH="/venv/bin:$PATH"
+# ENV PATH="/venv/bin:$PATH"
 
 # Copy your files and directories
 COPY index.html /usr/share/nginx/html/
