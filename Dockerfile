@@ -1,24 +1,20 @@
 # Use NGINX as the base image
 FROM nginx
 
-# Install Python 3.5 and pip
-RUN apt-get update && apt-get install -y \
-    python3.5 \
-    python3-pip \
-    && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Install Python 3.5 and create virtual environment
+RUN apt-get update && \
+    apt-get install -y python3.5 python3-venv && \
+    python3.5 -m venv /venv
 
-COPY index.html /usr/share/nginx/html/
-# Copy the Python script into the container
-COPY . .
-
-# Create and activate a virtual environment
-RUN python3.5 -m venv /venv
+# Set the PATH environment variable to include the virtual environment
 ENV PATH="/venv/bin:$PATH"
 
+# Copy your files and directories
+COPY index.html /usr/share/nginx/html/
+COPY . .
+
 # Install required Python modules using pip
-RUN pip install python-jenkins requests Jinja2
+RUN pip install -r requirements.txt
 
 # Copy the cron job file into the container
 COPY cronjob /etc/cron.d/cronjob
